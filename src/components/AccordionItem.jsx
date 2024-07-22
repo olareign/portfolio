@@ -77,7 +77,7 @@ function AccordionItem({ isOpen, onClick, data }) {
         {stack === "csc" && <FaComputer size={28} color="#415cd4" />}
         <div>
           <Title>{title}</Title>
-          <Subtitle>{years} years</Subtitle>
+          <Subtitle>{years}+ years</Subtitle>
         </div>
         <HiOutlineChevronDown
           size={24}
