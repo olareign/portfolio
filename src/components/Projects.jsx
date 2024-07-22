@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import styled, { css } from "styled-components";
 import PropTypes from "prop-types";
 import Tags from "./Tags";
@@ -105,10 +106,10 @@ function Project({ project }) {
             <span>Live Demo</span>
             <FiEye size={16} color="#fff" />
           </Button>
-          <Button type="repo" as="a" href={github_link} target="_blank">
+          {/* <Button type="repo" as="a" href={github_link} target="_blank">
             <span>View Code</span>
             <IoLogoGithub size={16} color="" />
-          </Button>
+          </Button> */}
         </Flex>
       </Content>
     </ProjectItem>

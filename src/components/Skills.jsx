@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Container } from "../ui/Container";
 import AccordionItem from "./AccordionItem";
 import { useState } from "react";
-import { frontendSkills, backendSkills, csSkills } from "../data/data";
+import { backendSkills } from "../data/data";
 
 const Section = styled.section`
   padding-top: 8rem;
@@ -49,22 +49,10 @@ function Skills() {
         <P>My Technical Level</P>
         <Accordion>
           <AccordionItem
-            index={0}
-            isOpen={activeIndex === 0}
-            onClick={() => handleClickedItem(0)}
-            data={frontendSkills}
-          />
-          <AccordionItem
             index={1}
             isOpen={activeIndex === 1}
             onClick={() => handleClickedItem(1)}
             data={backendSkills}
-          />
-          <AccordionItem
-            index={2}
-            isOpen={activeIndex === 2}
-            onClick={() => handleClickedItem(2)}
-            data={csSkills}
           />
         </Accordion>
       </Container>

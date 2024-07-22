@@ -1,13 +1,6 @@
 import styled from "styled-components";
 import { Container } from "../ui/Container";
-import {
-  BiLogoFacebook,
-  BiLogoGithub,
-  BiLogoInstagram,
-  BiLogoLinkedin,
-  BiLogoTwitter,
-  BiLogoWhatsapp,
-} from "react-icons/bi";
+import { BiLogoGithub, BiLogoLinkedin, BiLogoTwitter } from "react-icons/bi";
 
 const StyledFooter = styled.footer`
   padding-block: 8rem;
@@ -60,37 +53,24 @@ function Footer() {
         <Heading>Let&apos;s Stay Connected</Heading>
         <SocialLinks>
           <li>
-            <SocialLink href="https://www.linkedin.com/in/taofeekabdulazeez">
+            <SocialLink href="https://www.linkedin.com/in/abdulrasaq-taofeeq-olarewaju">
               <BiLogoLinkedin size={24} color="#415cd4" />
             </SocialLink>
           </li>
+
           <li>
-            <SocialLink href="https://web.facebook.com/taofeek.abdulazeez.5811">
-              <BiLogoFacebook size={24} color="#415cd4" />
-            </SocialLink>
-          </li>
-          <li>
-            <SocialLink href="https://twitter.com/SirFeeky">
+            <SocialLink href="https://twitter.com/Ola_rolatz">
               <BiLogoTwitter size={24} color="#415cd4" />
             </SocialLink>
           </li>
+
           <li>
-            <SocialLink href="https://www.instagram.com/taofeekabdulazeez_/">
-              <BiLogoInstagram size={24} color="#415cd4" />
-            </SocialLink>
-          </li>
-          <li>
-            <SocialLink href="https://github.com/Taofeekabdulazeez">
+            <SocialLink href="https://github.com/olareign">
               <BiLogoGithub size={24} color="#415cd4" />
             </SocialLink>
           </li>
-          <li>
-            <SocialLink href="https://wa.me/2348163231124">
-              <BiLogoWhatsapp size={24} color="#415cd4" />
-            </SocialLink>
-          </li>
         </SocialLinks>
-        <Copyright>© Sirfeeky, All right reserved</Copyright>
+        <Copyright>© Olareign, All right reserved</Copyright>
       </Container>
     </StyledFooter>
   );

@@ -6,7 +6,7 @@ const StyledLogo = styled.div`
 `;
 
 function Logo() {
-  return <StyledLogo>{`<Sirfeeky/>`}</StyledLogo>;
+  return <StyledLogo>{`<Olareign/>`}</StyledLogo>;
 }
 
 export default Logo;

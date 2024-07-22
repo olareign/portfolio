@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import styled from "styled-components";
 import { Container } from "../ui/Container";
 import Projects from "./Projects";
@@ -56,14 +57,14 @@ function Showcase() {
         <Heading>
           My Creative <span>Portfolio</span> Section
         </Heading>
-        <SortList>
+        {/* <SortList>
           <Sort>All</Sort>
           <Sort>Web app</Sort>
           <Sort>React</Sort>
           <Sort>Next JS</Sort>
           <Sort>TypeScript</Sort>
           <Sort>JavaScript</Sort>
-        </SortList>
+        </SortList> */}
         <Projects projects={projects} />
       </Container>
     </Section>

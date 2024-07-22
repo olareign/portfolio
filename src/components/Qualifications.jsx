@@ -158,23 +158,23 @@ function Qualifications() {
               <div></div>
               <div></div>
               <div>
-                <H4>Frontend Developer</H4>
-                <H6>Nigeria Association of Computing Students (NACOS)</H6>
-                <P>Unilorin Chapter (On-site)</P>
+                <H4>Backend Developer</H4>
+                <H6>PacifyLabs Technologies Limited</H6>
+                <P>Remote • Contract</P>
                 <Date>
                   <BiCalendarWeek size={16} />
-                  <span>October 2023 - present</span>
+                  <span>May - June</span>
                 </Date>
               </div>
             </TabContent>
             <TabContent>
               <div>
-                <H4>Academic Mentor</H4>
-                <H6>Darewood Students Association (DSA)</H6>
-                <P>University of Ilorin, Nigeria</P>
+                <H4>Backend Developer</H4>
+                <H6>Tobams Group.</H6>
+                <P>Remote • Contract</P>
                 <Date>
                   <BiCalendarWeek size={16} />
-                  <span>December 2023 - present</span>
+                  <span>December - April </span>
                 </Date>
               </div>
               <div></div>
@@ -188,11 +188,11 @@ function Qualifications() {
               <div></div>
               <div>
                 <H4>Student</H4>
-                <H6>University Of Ilorin, Nigeria</H6>
-                <P>B.Sc Computer Science</P>
+                <H6>Ekiti State University, Ado, Ekiti State. </H6>
+                <P>B.Sc Chemistry</P>
                 <Date>
                   <BiCalendarWeek size={16} />
-                  <span>November 2020 - October 2025</span>
+                  <span>2016 - 2022</span>
                 </Date>
               </div>
             </TabContent>
@@ -211,25 +211,26 @@ function Qualifications() {
             <div></div>
             <div></div>
             <div>
-              <H4>The Ultimate React Course 2024</H4>
-              <H6>Udemy</H6>
+              <H4>Backend Development</H4>
+              <H6>DevCareer Academy</H6>
               <P>
-                <strong>Skills: </strong>React • Supabase • Tailwin CSS • Redux
+                <strong>Skills: </strong>NodeJS, express, NestJS, MongoDB,
+                PostgressDB
               </P>
               <Date>
                 <BiCalendarWeek size={16} />
-                <span>Issued Dec 2023</span>
+                <span>April 2024</span>
               </Date>
             </div>
           </TabContent>
 
           <TabContent>
             <div>
-              <H4>The Complete JavaScript Course</H4>
-              <H6>Udemy</H6>
+              <H4>Introduction to Career Skills in Software Development</H4>
+              <H6>LinkedIn</H6>
               <P>
-                <strong>Skills: </strong>JavaScript • OOP • Functional
-                Programming
+                <strong>Skills: </strong>Agile methodology • Design patterns •
+                MVC architecture • Functional Programming • OOP
               </P>
               <Date>
                 <BiCalendarWeek size={16} />

@@ -102,25 +102,24 @@ function Intro() {
           <div>
             <Span>Welcome to my portfolio website!</Span>
             <H1>
-              <span>Hi 👋, I am Taofeek</span>
+              <span>Hi 👋, I am Olareign</span>
               <AnimatedBox>
-                <AnimatedItem>Software Developer</AnimatedItem>
-                <AnimatedItem>Front-End Developer</AnimatedItem>
+                {/* <AnimatedItem>Web Developer</AnimatedItem> */}
+                {/* <AnimatedItem>Front-End Developer</AnimatedItem> */}
                 <AnimatedItem>Back-End Developer</AnimatedItem>
               </AnimatedBox>
             </H1>
             <P>
-              {`Welcome to my corner of the web! I'm a full-stack web developer
-              passionate about crafting dynamic digital experiences. Explore my portfolio to see how I've leveraged a diverse skill set encompassing web technologies.`}
+              {`Results-driven Backend Engineer with about extensive hands-on
+              experience in web and backend development, equipped with
+              proficiency in Javascript, TypeScript, Node.js, PostgreSQL,
+              MongoDb, Redis, and GraphQL. I am eager to apply my skills in
+              developing and maintaining backend systems, contributing to
+              company's growth and success.`}
             </P>
             <Flex>
-              <Button
-                as="a"
-                href="TaofeekAbdulazeezResume.pdf"
-                type="primary"
-                download
-              >
-                <span>Download Resume</span>
+              <Button as="a" href="TaofeeqCV.pdf" type="primary" download>
+                <span>Download CV</span>
                 <IoMdDownload />
               </Button>
               {false && (
