@@ -63,6 +63,22 @@ export const backendSkills = [
         name: "GitHub",
         img: "GitHub.png",
       },
+      {
+        name: "PostgresSQL",
+        img: "postgres.png",
+      },
+      {
+        name: "Redis",
+        img: "redis.png",
+      },
+      {
+        name: "NestJS",
+        img: "nestjs.png",
+      },
+      {
+        name: "ExpressJS",
+        img: "express.png",
+      },
     ],
   },
 ];
