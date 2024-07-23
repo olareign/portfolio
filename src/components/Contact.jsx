@@ -156,9 +156,7 @@ function Contact() {
               <BiLogoLinkedinSquare color="#415cd4" size={32} />
               <FlexCol>
                 <Name>Connect</Name>
-                <SocialLink href="https://www.linkedin.com/in/taofeekabdulazeez">
-                  LinkedIn
-                </SocialLink>
+                <SocialLink href="">LinkedIn</SocialLink>
               </FlexCol>
             </Social>
             <Social>
@@ -174,8 +172,8 @@ function Contact() {
               <BiMailSend color="#415cd4" size={32} />
               <FlexCol>
                 <Name>Email</Name>
-                <SocialLink href="mailto:taofeekabdulazeez2020@gmail.com">
-                  taofeekabdulazeez2020@gmail.com
+                <SocialLink href="mailto:abdulrasaqtaofeeqola@gmail.com">
+                  abdulrasaqtaofeeqola@gmail.com
                 </SocialLink>
               </FlexCol>
             </Social>
@@ -183,7 +181,7 @@ function Contact() {
               <BiPhone color="#415cd4" size={32} />
               <FlexCol>
                 <Name>Phone Number</Name>
-                <SocialLink href="tel:2348163231124">+2348163231124</SocialLink>
+                <SocialLink href="tel:2347069786151">+2347069786151</SocialLink>
               </FlexCol>
             </Social>
           </Socials>
