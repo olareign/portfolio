@@ -102,7 +102,7 @@ function Intro() {
           <div>
             <Span>Welcome to my portfolio website!</Span>
             <H1>
-              <span>Hi 👋, I am Olareign</span>
+              <span>Hi 👋, I am Abdulrasaq Taofeeq Olarewaju</span>
               <AnimatedBox>
                 {/* <AnimatedItem>Web Developer</AnimatedItem> */}
                 {/* <AnimatedItem>Front-End Developer</AnimatedItem> */}

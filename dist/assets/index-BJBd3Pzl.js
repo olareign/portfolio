@@ -307,7 +307,7 @@ Error generating stack: `+o.message+`
 `,cm=j.img`
   width: 100%;
   display: block;
-`;function dm(){return a.jsx(nm,{id:"Home",children:a.jsx(Qn,{children:a.jsxs(rm,{children:[a.jsxs("div",{children:[a.jsx(sm,{children:"Welcome to my portfolio website!"}),a.jsxs(lm,{children:[a.jsx("span",{children:"Hi 👋, I am Olareign"}),a.jsx(im,{children:a.jsx(om,{children:"Back-End Developer"})})]}),a.jsx(um,{children:`Results-driven Backend Engineer with about extensive hands-on
+`;function dm(){return a.jsx(nm,{id:"Home",children:a.jsx(Qn,{children:a.jsxs(rm,{children:[a.jsxs("div",{children:[a.jsx(sm,{children:"Welcome to my portfolio website!"}),a.jsxs(lm,{children:[a.jsx("span",{children:"Hi 👋, I am Abdulrasaq Taofeeq Olarewaju"}),a.jsx(im,{children:a.jsx(om,{children:"Back-End Developer"})})]}),a.jsx(um,{children:`Results-driven Backend Engineer with about extensive hands-on
               experience in web and backend development, equipped with
               proficiency in Javascript, TypeScript, Node.js, PostgreSQL,
               MongoDb, Redis, and GraphQL. I am eager to apply my skills in
