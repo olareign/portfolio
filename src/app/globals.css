@@ -1,26 +1,156 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --void: #000000;
+  --surface: #0a0a0a;
+  --line: #1f1f1f;
+  --line-live: #3a3a3a;
+  --ink-dim: #6e6e6e;
+  --ink: #b8b8b8;
+  --ink-bright: #ffffff;
+  --accent-red: #e4372b;
+  color-scheme: dark;
+}
+
+/* Light mode is the same monochrome system, inverted — still zero hue, still one red accent. */
+:root[data-theme="light"] {
+  --void: #ffffff;
+  --surface: #f4f4f4;
+  --line: #e2e2e2;
+  --line-live: #c6c6c6;
+  --ink-dim: #8a8a8a;
+  --ink: #3a3a3a;
+  --ink-bright: #000000;
+  color-scheme: light;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-void: var(--void);
+  --color-surface: var(--surface);
+  --color-line: var(--line);
+  --color-line-live: var(--line-live);
+  --color-ink-dim: var(--ink-dim);
+  --color-ink: var(--ink);
+  --color-ink-bright: var(--ink-bright);
+  --color-accent-red: var(--accent-red);
+
+  --font-display: var(--font-silkscreen), "Courier New", monospace;
+  --font-data: var(--font-space-mono), "Courier New", monospace;
+  --font-prose: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  --radius-none: 0px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+* {
+  border-radius: 0 !important;
+}
+
+html {
+  background: var(--void);
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--void);
+  color: var(--ink);
+  font-family: var(--font-prose);
+}
+
+::selection {
+  background: var(--ink-bright);
+  color: var(--void);
+}
+
+:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 1px var(--void),
+    0 0 0 2px var(--ink-bright);
+}
+
+/* Ambient CRT scanline texture — very subtle, off under reduced motion */
+.scanlines {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  opacity: 0.03;
+  mix-blend-mode: overlay;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    var(--ink-bright) 0px,
+    var(--ink-bright) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scanlines {
+    display: none;
+  }
+}
+
+/* Theme-swapped brand mark: each variant's opaque background matches its theme's void color */
+.theme-logo-dark {
+  display: block;
+}
+.theme-logo-light {
+  display: none;
+}
+:root[data-theme="light"] .theme-logo-dark {
+  display: none;
+}
+:root[data-theme="light"] .theme-logo-light {
+  display: block;
+}
+
+/* Vertical rail label */
+.rail-label {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+
+/* Console table readout rows: value right-aligned to a shared column */
+.readout-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+/* Timeline month ticker — slow, low-contrast, infinite */
+@keyframes ticker-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.ticker {
+  animation: ticker-scroll 60s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticker {
+    animation: none;
+  }
+}
+
+/* Book slider — continuous auto-scroll, pauses on hover/focus so covers stay clickable */
+.book-slider-track {
+  animation: ticker-scroll 22s linear infinite;
+}
+
+.book-slider-viewport:hover .book-slider-track,
+.book-slider-viewport:focus-within .book-slider-track {
+  animation-play-state: paused;
 }
