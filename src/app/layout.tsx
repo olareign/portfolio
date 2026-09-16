@@ -1,15 +1,15 @@
 import type { Metadata, Viewport } from "next";
-import { Silkscreen, Space_Mono, Inter } from "next/font/google";
+import { Space_Grotesk, Space_Mono, Inter } from "next/font/google";
 import { profile, contact } from "@/content";
 import { MotionProvider } from "@/components/MotionProvider";
 import { ThemeScript } from "@/components/ThemeScript";
 import { SITE_URL } from "@/lib/site";
 import "./globals.css";
 
-const silkscreen = Silkscreen({
-  variable: "--font-silkscreen",
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
   subsets: ["latin"],
-  weight: ["400", "700"],
+  weight: ["500", "700"],
   display: "swap",
 });
 
@@ -98,7 +98,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${silkscreen.variable} ${spaceMono.variable} ${inter.variable} h-full antialiased`}
+      className={`${spaceGrotesk.variable} ${spaceMono.variable} ${inter.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <body className="min-h-full bg-void text-ink font-prose">
