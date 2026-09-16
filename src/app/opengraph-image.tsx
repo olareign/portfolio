@@ -9,7 +9,7 @@ export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 export default async function Image() {
-  const logoData = await readFile(join(process.cwd(), "src/assets/og-logo.png"), "base64");
+  const logoData = await readFile(join(process.cwd(), "src/assets/og-logo-light.png"), "base64");
   const logoSrc = `data:image/png;base64,${logoData}`;
 
   return new ImageResponse(
@@ -21,24 +21,24 @@ export default async function Image() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: "#000000",
-          color: "#B8B8B8",
+          background: "#FFFFFF",
+          color: "#3A3A3A",
           padding: "56px 64px",
           fontFamily: "monospace",
         }}
       >
         <div style={{ display: "flex", justifyContent: "space-between", fontSize: 22 }}>
-          <span style={{ color: "#FFFFFF" }}>{profile.subjectId}</span>
-          <span style={{ color: "#6E6E6E" }}>● ANALYZING</span>
+          <span style={{ color: "#000000" }}>{profile.subjectId}</span>
+          <span style={{ color: "#8A8A8A" }}>● ANALYZING</span>
         </div>
 
         <div style={{ display: "flex", flexDirection: "column" }}>
-          <span style={{ color: "#6E6E6E", fontSize: 24, letterSpacing: 4, marginBottom: 16 }}>
+          <span style={{ color: "#8A8A8A", fontSize: 24, letterSpacing: 4, marginBottom: 16 }}>
             ● SUBJECT IDENTIFIED
           </span>
           <span
             style={{
-              color: "#FFFFFF",
+              color: "#000000",
               fontSize: 76,
               fontWeight: 700,
               lineHeight: 1.05,
@@ -46,7 +46,7 @@ export default async function Image() {
           >
             {profile.name}
           </span>
-          <span style={{ color: "#B8B8B8", fontSize: 30, marginTop: 24 }}>
+          <span style={{ color: "#3A3A3A", fontSize: 30, marginTop: 24 }}>
             {profile.positioning}
           </span>
         </div>
@@ -56,8 +56,8 @@ export default async function Image() {
             display: "flex",
             justifyContent: "space-between",
             fontSize: 22,
-            color: "#6E6E6E",
-            borderTop: "1px solid #1F1F1F",
+            color: "#8A8A8A",
+            borderTop: "1px solid #E2E2E2",
             paddingTop: 24,
           }}
         >
