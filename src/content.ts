@@ -238,24 +238,29 @@ export interface Book {
   salesUrl?: string;
 }
 
+const SELAR_STORE_URL = "https://selar.com/4f67n6cq4u";
+
 export const books: Book[] = [
   {
     title: "The Server Side of Next.js",
     subtitle: "From Route Handlers to Production Backends",
     meta: "TypeScript · PostgreSQL & Prisma · APIs, auth, caching — junior to senior",
     cover: "/books/nextjs-server-side.png",
+    salesUrl: SELAR_STORE_URL,
   },
   {
     title: "React to Engineer",
     subtitle: "Build Production Frontends with React and Next.js",
     meta: "TypeScript throughout · Junior to senior, one project at a time",
     cover: "/books/react-to-engineer.png",
+    salesUrl: SELAR_STORE_URL,
   },
   {
     title: "Python Before AI",
     subtitle: "Nine Projects for Future AI Engineers",
     meta: "Modern, typed Python 3.13 · From Go to AI-ready code",
     cover: "/books/python-before-ai.png",
+    salesUrl: SELAR_STORE_URL,
   },
 ];
 
