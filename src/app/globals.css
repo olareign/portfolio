@@ -249,3 +249,40 @@ body::before {
     animation: none;
   }
 }
+
+/* Project cards — staggered reveal on load/filter, and a light sweep across the card on hover */
+@keyframes node-card-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+
+.node-card {
+  animation: node-card-in 0.4s ease-out backwards;
+}
+
+.node-card-sweep {
+  pointer-events: none;
+  position: absolute;
+  inset-block: 0;
+  left: 0;
+  width: 40%;
+  transform: translateX(-120%) skewX(-18deg);
+  background: linear-gradient(to right, transparent, color-mix(in srgb, var(--accent-amber) 12%, transparent), transparent);
+}
+
+.node-card:hover .node-card-sweep,
+.node-card:focus-within .node-card-sweep {
+  transform: translateX(320%) skewX(-18deg);
+  transition: transform 0.7s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .node-card {
+    animation: none;
+  }
+  .node-card-sweep {
+    display: none;
+  }
+}
