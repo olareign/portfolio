@@ -5,7 +5,7 @@ export function Archive({ num }: { num: number }) {
 
   return (
     <section id="archive" className="border-b border-line py-16">
-      <p className="font-data text-xs tracking-[0.2em] text-ink-dim">{String(num).padStart(2, "0")}</p>
+      <p className="font-data text-xs tracking-[0.2em] text-accent-amber">{String(num).padStart(2, "0")}</p>
       <h2 className="mt-1 font-display text-2xl text-ink-bright sm:text-3xl">ARTICLES</h2>
 
       <ul className="mt-8 max-w-2xl divide-y divide-line">

@@ -7,14 +7,18 @@ const CORNER_POSITIONS = [
 
 interface ScanBracketProps {
   className?: string;
-  /** "dim" for a quiet resting frame, "bright" for the locked/hover state. */
-  tone?: "dim" | "bright";
+  /** "dim" for a quiet resting frame, "bright" for the locked/hover state, "relevant" for the amber subject lock. */
+  tone?: "dim" | "bright" | "relevant";
   /** Adds the hover/focus-driven reveal used on interactive nodes. */
   interactive?: boolean;
 }
 
 export function ScanBracket({ className = "", tone = "dim", interactive = false }: ScanBracketProps) {
-  const toneClass = tone === "bright" ? "border-ink-bright" : "border-line-live";
+  const toneClass = {
+    dim: "border-line-live",
+    bright: "border-ink-bright",
+    relevant: "border-accent-amber",
+  }[tone];
   const interactiveClass = interactive
     ? "opacity-0 scale-90 transition-all duration-200 ease-out group-hover:opacity-100 group-hover:scale-100 group-focus-within:opacity-100 group-focus-within:scale-100"
     : "";

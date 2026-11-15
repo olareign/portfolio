@@ -29,7 +29,7 @@ export function StatCounter({ stat }: { stat: Stat }) {
     <div ref={ref} className="border-t border-line pt-3">
       <p className="font-display text-3xl text-ink-bright sm:text-4xl">
         <m.span>{rounded}</m.span>
-        {suffix}
+        <span className="text-accent-amber">{suffix}</span>
       </p>
       <p className="mt-1 font-data text-xs text-ink-dim">{stat.label}</p>
     </div>

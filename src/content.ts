@@ -9,6 +9,8 @@ export const profile = {
   location: "Ilorin, Kwara State, Nigeria",
   availability: "Open to remote & contract roles",
   cvUrl: "/cv.pdf",
+  /** Dosinex — the CV builder the "personalize for a role" CTA sends visitors to. */
+  cvBuilderUrl: "https://dosinex.com",
 };
 
 export const contact = {
@@ -38,10 +40,10 @@ export const timeline: TimelineEntry[] = [
     org: "Tobams Group",
     role: "Development Team Lead",
     startYear: 2023,
-    endYear: "present",
+    endYear: 2026,
     location: "UK · remote",
     summary:
-      "Leads a team of 10+ across a three-repo product spanning two domains on a shared API. Ships and reviews Nexus, RLK, RLM, and Rareeat.",
+      "Led a team of 10+ across a three-repo product spanning two domains on a shared API. Shipped and reviewed Nexus, RLK, RLM, and Rareeat.",
   },
   {
     id: "pacifylabs",
@@ -229,10 +231,10 @@ export const certifications: Certification[] = [
 export const bio = {
   paragraphs: [
     "Olareign studied Chemistry at university — then taught himself software engineering from scratch and has spent the 4+ years since building and shipping backend-leaning fullstack products in production.",
-    "He currently leads a development team of 10+ at Tobams Group (UK, remote), shipping across the Nexus, RLK, RLM, and Rareeat platforms — three repos, two domains, one shared API.",
-    "Alongside that, he's been a software engineer and tutor at Pacifylabs since 2022, where he owns SafePick end-to-end and builds Rakuxon Care, SCIMS, EduMimi, and KudiPay while mentoring 20+ learners through JavaScript and web development.",
+    "From 2023 to 2026 he led a development team of 10+ at Tobams Group (UK, remote), shipping across the Nexus, RLK, RLM, and Rareeat platforms — three repos, two domains, one shared API.",
+    "He's been a software engineer and tutor at Pacifylabs since 2022, where he owns SafePick end-to-end and builds Rakuxon Care, SCIMS, EduMimi, and KudiPay while mentoring 20+ learners through JavaScript and web development.",
     "The self-taught path shows up in how he works: strong on fundamentals, comfortable reading unfamiliar codebases, and expanding deliberately into Go, Python, and AI engineering rather than staying inside one comfortable stack.",
-    "Day to day that means building a Nexus statistics pipeline processing 10,000+ records through MongoDB aggregation, with BullMQ-driven email delivery producing automated daily admin reports; wiring payment flows through Paystack, Stripe, and PayPal; and stress-testing platform systems ahead of a large intern-onboarding event to make sure they held up under load.",
+    "In practice that has meant building a Nexus statistics pipeline processing 10,000+ records through MongoDB aggregation, with BullMQ-driven email delivery producing automated daily admin reports; wiring payment flows through Paystack, Stripe, and PayPal; and stress-testing platform systems ahead of a large intern-onboarding event to make sure they held up under load.",
     "He also holds certifications in Project Management, Strategic Planning, and Leadership — practical grounding for the parts of the job that aren't just code: coordinating a 10-person team, reviewing pull requests, and mentoring the developers he teaches JavaScript and web development to.",
   ],
   education: "B.Sc. Chemistry, Ekiti State University (2016–2022). Self-taught in software engineering.",

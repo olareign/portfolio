@@ -1,3 +1,4 @@
+import { MachineFeed } from "@/components/MachineFeed";
 import { HudBar } from "@/components/HudBar";
 import { LeftRail } from "@/components/LeftRail";
 import { Hero } from "@/components/Hero";
@@ -17,10 +18,11 @@ export default function Home() {
 
   return (
     <>
+      <MachineFeed />
       <div className="scanlines" aria-hidden />
       <HudBar />
       <LeftRail hasArchive={hasArchive} />
-      <main className="mx-auto max-w-[1440px] px-4 pt-10 sm:pl-14 sm:pr-8">
+      <main className="relative z-10 mx-auto max-w-[1440px] px-4 pt-10 sm:pl-14 sm:pr-8">
         <Hero />
         <Timeline num={2} />
         <Nodes num={3} />

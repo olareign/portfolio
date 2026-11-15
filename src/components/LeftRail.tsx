@@ -26,7 +26,7 @@ export function LeftRail({ hasArchive }: { hasArchive: boolean }) {
           <li key={s.href} className="rail-label">
             <a
               href={s.href}
-              className="font-data text-[10px] tracking-[0.2em] text-ink-dim transition-colors hover:text-ink-bright focus-visible:text-ink-bright"
+              className="font-data text-[10px] tracking-[0.2em] text-ink-dim transition-colors hover:text-accent-amber focus-visible:text-accent-amber"
             >
               {s.label}
             </a>

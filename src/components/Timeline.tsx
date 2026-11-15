@@ -2,13 +2,18 @@
 
 import { useRef } from "react";
 import { m, useInView, useReducedMotion } from "framer-motion";
-import { timeline, timelineRange, type TimelineEntry } from "@/content";
+import { timeline, timelineRange, type TimelineEntry, type TimelineTrack } from "@/content";
 
 const MONTHS = ["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"];
 const YEARS = Array.from(
   { length: timelineRange.end - timelineRange.start + 1 },
   (_, i) => timelineRange.start + i
 );
+
+const TRACK_FILL: Record<TimelineTrack, string> = {
+  tobams: "bg-accent-blue",
+  pacifylabs: "bg-accent-amber",
+};
 
 function yearToPct(year: number) {
   const clamped = Math.min(Math.max(year, timelineRange.start), timelineRange.end);
@@ -25,12 +30,14 @@ function TrackBar({ entry, scanned }: { entry: TimelineEntry; scanned: boolean }
       <div>
         <p className="font-data text-sm text-ink-bright">{entry.org}</p>
         <p className="font-data text-xs text-ink-dim">{entry.role}</p>
-        <p className="mt-1 font-data text-[11px] text-ink-dim">{entry.location}</p>
+        <p className="mt-1 font-data text-[11px] text-ink-dim">
+          {entry.startYear} — {entry.endYear === "present" ? "PRESENT" : entry.endYear} · {entry.location}
+        </p>
       </div>
       <div>
         <div className="relative h-2 border border-line bg-surface">
           <m.div
-            className="absolute inset-y-0 left-0 bg-ink-bright/80"
+            className={`absolute inset-y-0 left-0 ${TRACK_FILL[entry.track]}`}
             initial={{ width: 0 }}
             animate={{ width: scanned ? `${width}%` : 0 }}
             style={{ left: `${left}%` }}
@@ -51,7 +58,7 @@ export function Timeline({ num }: { num: number }) {
 
   return (
     <section id="timeline" ref={ref} className="border-b border-line py-16">
-      <p className="font-data text-xs tracking-[0.2em] text-ink-dim">{String(num).padStart(2, "0")}</p>
+      <p className="font-data text-xs tracking-[0.2em] text-accent-amber">{String(num).padStart(2, "0")}</p>
       <h2 className="mt-1 font-display text-2xl text-ink-bright sm:text-3xl">
         OPERATIONAL HISTORY
       </h2>

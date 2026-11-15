@@ -6,7 +6,7 @@ import { ScanBracket } from "./ScanBracket";
 export function Dossier({ num }: { num: number }) {
   return (
     <section id="dossier" className="border-b border-line py-16">
-      <p className="font-data text-xs tracking-[0.2em] text-ink-dim">{String(num).padStart(2, "0")}</p>
+      <p className="font-data text-xs tracking-[0.2em] text-accent-amber">{String(num).padStart(2, "0")}</p>
       <h2 className="mt-1 font-display text-2xl text-ink-bright sm:text-3xl">SUBJECT FILE</h2>
 
       <div className="mt-8 grid grid-cols-1 gap-10 lg:grid-cols-[1fr_260px]">
@@ -26,7 +26,7 @@ export function Dossier({ num }: { num: number }) {
               alt="Abdulrasaq Taofeeq Olarewaju"
               width={200}
               height={264}
-              className="w-full grayscale contrast-110"
+              className="w-full"
             />
             <p className="mt-2 font-data text-[10px] tracking-[0.2em] text-ink-dim">
               SUBJ-0x88 · VISUAL RECORD

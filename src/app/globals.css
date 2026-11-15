@@ -1,26 +1,34 @@
 @import "tailwindcss";
 
 :root {
-  --void: #000000;
-  --surface: #0a0a0a;
-  --line: #1f1f1f;
-  --line-live: #3a3a3a;
-  --ink-dim: #6e6e6e;
-  --ink: #b8b8b8;
+  --void: #05070d;
+  --surface: #0b101a;
+  --line: #1a2231;
+  --line-live: #33415a;
+  --ink-dim: #7a869c;
+  --ink: #bcc5d6;
   --ink-bright: #ffffff;
-  --accent-red: #e4372b;
+  /* Classification colours, as the Machine tags what it sees: red threat, amber relevant, blue asset, green live. */
+  --accent-red: #f0483c;
+  --accent-amber: #f5b82e;
+  --accent-blue: #4aa8ff;
+  --accent-green: #3ddc97;
   color-scheme: dark;
 }
 
-/* Light mode is the same monochrome system, inverted — still zero hue, still one red accent. */
+/* Light mode keeps the same system on a cool paper base, with accents darkened to hold contrast. */
 :root[data-theme="light"] {
-  --void: #ffffff;
-  --surface: #f4f4f4;
-  --line: #e2e2e2;
-  --line-live: #c6c6c6;
-  --ink-dim: #8a8a8a;
-  --ink: #3a3a3a;
-  --ink-bright: #000000;
+  --void: #f7f9fc;
+  --surface: #edf1f7;
+  --line: #d9e0ea;
+  --line-live: #b5c0d0;
+  --ink-dim: #66728a;
+  --ink: #2c3648;
+  --ink-bright: #070b14;
+  --accent-red: #cf2f24;
+  --accent-amber: #a86200;
+  --accent-blue: #0f62c4;
+  --accent-green: #0b7f4e;
   color-scheme: light;
 }
 
@@ -33,6 +41,9 @@
   --color-ink: var(--ink);
   --color-ink-bright: var(--ink-bright);
   --color-accent-red: var(--accent-red);
+  --color-accent-amber: var(--accent-amber);
+  --color-accent-blue: var(--accent-blue);
+  --color-accent-green: var(--accent-green);
 
   --font-display: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
   --font-data: var(--font-space-mono), "Courier New", monospace;
@@ -62,8 +73,21 @@ body {
   font-family: var(--font-prose);
 }
 
+/* Ambient colour wash so the page never reads as flat black or flat white. */
+body::before {
+  content: "";
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(60% 50% at 10% 0%, color-mix(in srgb, var(--accent-blue) 17%, transparent), transparent 70%),
+    radial-gradient(50% 45% at 100% 35%, color-mix(in srgb, var(--accent-amber) 10%, transparent), transparent 70%),
+    radial-gradient(55% 40% at 30% 100%, color-mix(in srgb, var(--accent-blue) 9%, transparent), transparent 70%);
+}
+
 ::selection {
-  background: var(--ink-bright);
+  background: var(--accent-amber);
   color: var(--void);
 }
 
@@ -153,4 +177,75 @@ body {
 .book-slider-viewport:hover .book-slider-track,
 .book-slider-viewport:focus-within .book-slider-track {
   animation-play-state: paused;
+}
+
+/* Machine feed — ambient data stream behind all content */
+.machine-feed {
+  opacity: 0.9;
+}
+
+/* Hero camera feed */
+@keyframes feed-scan {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(900%);
+  }
+}
+
+.feed-scan {
+  pointer-events: none;
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  height: 12%;
+  background: linear-gradient(to bottom, transparent, color-mix(in srgb, var(--accent-blue) 28%, transparent));
+  border-bottom: 1px solid color-mix(in srgb, var(--accent-blue) 80%, transparent);
+  animation: feed-scan 4.5s linear infinite;
+}
+
+/* The acquisition box hunts wide, snaps onto the face, holds, then re-acquires. */
+@keyframes feed-face-lock {
+  0% {
+    opacity: 0;
+    transform: translate(14%, -10%) scale(1.5);
+  }
+  9% {
+    opacity: 1;
+    transform: translate(-3%, 2%) scale(1.08);
+  }
+  14%,
+  92% {
+    opacity: 1;
+    transform: none;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.04);
+  }
+}
+
+.feed-face {
+  animation: feed-face-lock 7s ease-out infinite;
+}
+
+@keyframes feed-rec {
+  50% {
+    opacity: 0.2;
+  }
+}
+
+.feed-rec {
+  animation: feed-rec 1.2s steps(1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .feed-scan {
+    display: none;
+  }
+  .feed-face,
+  .feed-rec {
+    animation: none;
+  }
 }

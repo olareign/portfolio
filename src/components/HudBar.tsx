@@ -21,9 +21,9 @@ export function HudBar() {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 flex h-10 items-center justify-between border-b border-line bg-void/95 px-3 font-data text-[11px] tracking-wide text-ink sm:px-4 sm:text-xs">
-      <span className="text-ink-bright">{profile.subjectId}</span>
+      <span className="text-accent-amber">{profile.subjectId}</span>
       <span className="hidden items-center gap-1.5 text-ink-dim sm:flex">
-        <span className="h-1.5 w-1.5 animate-pulse bg-ink-bright motion-reduce:animate-none" aria-hidden />
+        <span className="h-1.5 w-1.5 animate-pulse bg-accent-blue motion-reduce:animate-none" aria-hidden />
         ● {hud.status}
       </span>
       <div className="flex items-center gap-4">

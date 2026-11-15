@@ -49,7 +49,7 @@ export const cvData: CvData = {
   github: "github.com/olareign",
   availability: "Open to remote & contract roles",
   summary:
-    "Self-taught software engineer with 4+ years of professional experience building and shipping web applications end to end, with a backend focus. Concurrently deliver across two companies, contributing to production platforms spanning AI-powered learning tools, real estate, care services, fintech, retail, education, and inventory management. Strong in Node.js, TypeScript, and NestJS backed by PostgreSQL, MongoDB, Redis, and BullMQ, with production frontend experience in React and Next.js, and hands-on experience integrating AI capabilities into live products. Have led a development team on frontend delivery, and continue to mentor developers and teach JavaScript. Currently expanding into Go, Python, and AI engineering.",
+    "Self-taught software engineer with 4+ years of professional experience building and shipping web applications end to end, with a backend focus. Have delivered across two companies, contributing to production platforms spanning AI-powered learning tools, real estate, care services, fintech, retail, education, and inventory management. Strong in Node.js, TypeScript, and NestJS backed by PostgreSQL, MongoDB, Redis, and BullMQ, with production frontend experience in React and Next.js, and hands-on experience integrating AI capabilities into live products. Have led a development team on frontend delivery, and continue to mentor developers and teach JavaScript. Currently expanding into Go, Python, and AI engineering.",
   skills: [
     { label: "Languages", items: "TypeScript, JavaScript, Go (learning), Python (learning), SQL" },
     {
@@ -69,14 +69,14 @@ export const cvData: CvData = {
       role: "Development Team Lead",
       org: "Tobams Group",
       meta: "Backend development, team leadership; UK-based company (remote)",
-      years: "2023 — Present",
+      years: "2023 — 2026",
       bullets: [
-        "Contribute to development across multiple AI-based company platforms including Nexus (nexus.tobamsgroup.com), RLK, RLM, and Rareeat, implementing features spanning backend services and frontend interfaces.",
+        "Contributed to development across multiple AI-based company platforms including Nexus (nexus.tobamsgroup.com), RLK, RLM, and Rareeat, implementing features spanning backend services and frontend interfaces.",
         "Integrated AI capabilities into learning platforms (RLK and RLM) covering areas such as sustainability, leadership, and entrepreneurship, contributing to both feature integration and supporting engineering.",
         "Built a platform statistics pipeline (Nexus) processing 10,000+ records using MongoDB aggregation pipelines and TypeScript, with BullMQ-driven email delivery producing automated daily administrative reports.",
         "Stress-tested platform systems ahead of a large intern-onboarding event to ensure reliability under increased load.",
-        "Lead a development team of 10+ on frontend delivery, coordinating work, reviewing pull requests, and mentoring team members.",
-        "Work across the stack with NestJS, TypeScript, PostgreSQL, MongoDB, Redis, and BullMQ on the backend, and React and Next.js on the frontend.",
+        "Led a development team of 10+ on frontend delivery, coordinating work, reviewing pull requests, and mentoring team members.",
+        "Worked across the stack with NestJS, TypeScript, PostgreSQL, MongoDB, Redis, and BullMQ on the backend, and React and Next.js on the frontend.",
       ],
     },
     {

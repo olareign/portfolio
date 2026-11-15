@@ -6,7 +6,7 @@ export function Contact({ num }: { num: number }) {
     <section id="contact" className="border-b border-line py-16">
       <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
         <div>
-          <p className="font-data text-xs tracking-[0.2em] text-ink-dim">
+          <p className="font-data text-xs tracking-[0.2em] text-accent-amber">
             {String(num).padStart(2, "0")}
           </p>
           <h2 className="mt-1 font-display text-2xl text-ink-bright sm:text-3xl">

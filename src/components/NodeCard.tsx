@@ -2,6 +2,12 @@ import Image from "next/image";
 import type { Project } from "@/content";
 import { ScanBracket } from "./ScanBracket";
 
+const STATUS_TONE: Record<Project["status"], string> = {
+  LIVE: "text-accent-green",
+  "IN PROGRESS": "text-accent-amber",
+  SHIPPED: "text-accent-blue",
+};
+
 function ProjectMark({ project }: { project: Project }) {
   if (project.logo) {
     return (
@@ -11,7 +17,7 @@ function ProjectMark({ project }: { project: Project }) {
           alt=""
           width={24}
           height={24}
-          className="h-6 w-6 object-contain grayscale contrast-125"
+          className="h-6 w-6 object-contain"
         />
       </div>
     );
@@ -30,8 +36,8 @@ export function NodeCard({ project }: { project: Project }) {
   const idTag = `SUBJ-${project.id.slice(0, 3).toUpperCase()}`;
 
   return (
-    <div className="group relative border border-line bg-surface p-5 transition-colors focus-within:border-ink-bright hover:border-ink-bright">
-      <ScanBracket interactive tone="bright" />
+    <div className="group relative border border-line bg-surface p-5 transition-colors focus-within:border-accent-amber hover:border-accent-amber">
+      <ScanBracket interactive tone="relevant" />
 
       <div className="flex items-start justify-between gap-3">
         <div className="flex items-start gap-3">
@@ -45,14 +51,14 @@ export function NodeCard({ project }: { project: Project }) {
           <span
             className={`border px-2 py-0.5 font-data text-[10px] tracking-wide ${
               project.tag === "PRIMARY"
-                ? "border-ink-bright text-ink-bright"
+                ? "border-accent-amber text-accent-amber"
                 : "border-line text-ink-dim"
             }`}
           >
             {project.tag}
           </span>
           {project.ai && (
-            <span className="border border-line px-2 py-0.5 font-data text-[10px] tracking-wide text-ink-dim">
+            <span className="border border-accent-blue/60 px-2 py-0.5 font-data text-[10px] tracking-wide text-accent-blue">
               AI
             </span>
           )}
@@ -76,7 +82,7 @@ export function NodeCard({ project }: { project: Project }) {
         </div>
         <div className="readout-row">
           <dt className="text-ink-dim">STATUS</dt>
-          <dd className="text-ink-bright">{project.status}</dd>
+          <dd className={STATUS_TONE[project.status]}>● {project.status}</dd>
         </div>
       </dl>
     </div>
