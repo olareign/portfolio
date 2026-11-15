@@ -9,6 +9,9 @@ import { Archive } from "@/components/Archive";
 import { Dossier } from "@/components/Dossier";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
+import { MobileNav } from "@/components/MobileNav";
+import { CommandConsole } from "@/components/CommandConsole";
+import { SubjectLockSequence } from "@/components/SubjectLockSequence";
 import { articles } from "@/content";
 
 export default function Home() {
@@ -21,7 +24,7 @@ export default function Home() {
       <MachineFeed />
       <div className="scanlines" aria-hidden />
       <HudBar />
-      <LeftRail hasArchive={hasArchive} />
+      <LeftRail />
       <main className="relative z-10 mx-auto max-w-[1440px] px-4 pt-10 sm:pl-14 sm:pr-8">
         <Hero />
         <Timeline num={2} />
@@ -32,6 +35,9 @@ export default function Home() {
         <Contact num={contactNum} />
       </main>
       <Footer />
+      <MobileNav />
+      <CommandConsole />
+      <SubjectLockSequence />
     </>
   );
 }

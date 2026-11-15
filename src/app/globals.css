@@ -169,14 +169,26 @@ body::before {
   }
 }
 
-/* Book slider — continuous auto-scroll, pauses on hover/focus so covers stay clickable */
-.book-slider-track {
-  animation: ticker-scroll 22s linear infinite;
+/* Book shelf — covers tip toward the reader on hover */
+.book-shelf {
+  perspective: 1200px;
 }
 
-.book-slider-viewport:hover .book-slider-track,
-.book-slider-viewport:focus-within .book-slider-track {
-  animation-play-state: paused;
+.book-tilt {
+  transition:
+    transform 0.35s ease-out,
+    box-shadow 0.35s ease-out;
+}
+
+.group:hover .book-tilt {
+  transform: rotateY(-9deg) rotateX(3deg) translateY(-4px);
+  box-shadow: 14px 18px 0 color-mix(in srgb, var(--accent-amber) 22%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .group:hover .book-tilt {
+    transform: none;
+  }
 }
 
 /* Machine feed — ambient data stream behind all content */
@@ -284,5 +296,77 @@ body::before {
   }
   .node-card-sweep {
     display: none;
+  }
+}
+
+/* Sections scan in as they enter the viewport. Scroll-driven, so it needs no script and simply
+   stays put in browsers without view timelines. */
+@keyframes reveal-in {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal {
+      animation: reveal-in linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 30%;
+    }
+  }
+}
+
+/* Left-rail progress line grows with page scroll */
+.rail-progress {
+  transform: scaleY(0);
+  transform-origin: top;
+}
+
+@keyframes rail-grow {
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@supports (animation-timeline: scroll()) {
+  .rail-progress {
+    animation: rail-grow linear both;
+    animation-timeline: scroll(root);
+  }
+}
+
+/* HUD status re-types on each section change */
+@keyframes hud-type {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+.hud-status {
+  animation: hud-type 0.45s steps(18) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hud-status {
+    animation: none;
+  }
+}
+
+/* Long-form reading areas sit on a near-solid panel so the data stream never competes with copy. */
+.reading-panel {
+  background: color-mix(in srgb, var(--void) 90%, transparent);
+  border: 1px solid var(--line);
+  padding: 1.25rem 1.5rem;
+  backdrop-filter: blur(2px);
+}
+
+@media (max-width: 639px) {
+  .reading-panel {
+    padding: 1rem;
   }
 }

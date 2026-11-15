@@ -1,35 +1,25 @@
 "use client";
 
 import { useEffect, useState } from "react";
-
-const STORAGE_KEY = "soi-theme";
+import { THEME_CHANGE_EVENT, currentTheme, toggleTheme } from "@/lib/theme";
 
 export function ThemeToggle() {
   const [isLight, setIsLight] = useState(false);
 
   useEffect(() => {
+    const sync = () => setIsLight(currentTheme() === "light");
     // Client-only: reflects the attribute the blocking init script already set on <html>.
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setIsLight(document.documentElement.dataset.theme === "light");
+    sync();
+    window.addEventListener(THEME_CHANGE_EVENT, sync);
+    return () => window.removeEventListener(THEME_CHANGE_EVENT, sync);
   }, []);
-
-  function toggle() {
-    const next = !isLight;
-    setIsLight(next);
-    document.documentElement.dataset.theme = next ? "light" : "dark";
-    try {
-      localStorage.setItem(STORAGE_KEY, next ? "light" : "dark");
-    } catch {
-      // localStorage unavailable — theme just won't persist across visits
-    }
-  }
 
   return (
     <button
       type="button"
-      onClick={toggle}
+      onClick={toggleTheme}
       aria-label={isLight ? "Switch to dark mode" : "Switch to light mode"}
-      className="font-data text-[11px] tracking-wide text-ink-dim transition-colors hover:text-ink-bright sm:text-xs"
+      className="font-data text-[11px] tracking-wide text-ink-dim transition-colors hover:text-accent-amber sm:text-xs"
     >
       {isLight ? "☾ DARK" : "☀ LIGHT"}
     </button>

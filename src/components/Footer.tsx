@@ -5,7 +5,7 @@ export function Footer() {
   const timestamp = new Date().toISOString().replace("T", " ").slice(0, 19);
 
   return (
-    <footer className="relative z-10 flex flex-col items-center justify-between gap-4 px-4 py-6 font-data text-[11px] tracking-wide text-ink-dim sm:flex-row sm:px-10">
+    <footer className="relative z-10 flex flex-col items-center justify-between gap-4 px-4 pb-20 pt-6 font-data sm:pb-6 text-[11px] tracking-wide text-ink-dim sm:flex-row sm:px-10">
       <span>{profile.subjectId}</span>
       <div className="h-6">
         <Image

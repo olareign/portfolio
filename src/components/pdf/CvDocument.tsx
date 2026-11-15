@@ -1,32 +1,41 @@
 import { Document, Page, StyleSheet, Text, View } from "@react-pdf/renderer";
 import type { CvData } from "@/lib/cv-data";
 
+// Matches the site's light theme: navy ink, amber section markers, blue role lines.
+const INK = "#070b14";
+const MUTED = "#4b566b";
+const AMBER = "#a86200";
+const BLUE = "#0f62c4";
+
 const styles = StyleSheet.create({
-  page: { padding: 30, fontSize: 9, fontFamily: "Helvetica", color: "#1a1a1a" },
-  name: { fontSize: 18, fontFamily: "Helvetica-Bold" },
-  title: { fontSize: 10, marginTop: 2 },
-  contactRow: { fontSize: 8.5, marginTop: 4, color: "#444" },
+  page: { paddingTop: 0, paddingBottom: 26, paddingHorizontal: 30, fontSize: 8.6, fontFamily: "Helvetica", color: INK },
+  band: { height: 5, backgroundColor: AMBER, marginHorizontal: -30, marginBottom: 20 },
+  name: { fontSize: 19, fontFamily: "Helvetica-Bold" },
+  title: { fontSize: 10, marginTop: 2, color: BLUE },
+  contactRow: { fontSize: 8, marginTop: 3, color: MUTED },
   sectionHeading: {
-    fontSize: 9.5,
+    fontSize: 9,
     fontFamily: "Helvetica-Bold",
     marginTop: 8,
     marginBottom: 3,
-    borderBottom: "1pt solid #1a1a1a",
+    borderBottom: `1pt solid ${AMBER}`,
     paddingBottom: 1.5,
+    color: AMBER,
     textTransform: "uppercase",
+    letterSpacing: 0.8,
   },
-  paragraph: { lineHeight: 1.3 },
+  paragraph: {},
   skillRow: { flexDirection: "row", marginBottom: 1.5 },
   skillLabel: { fontFamily: "Helvetica-Bold", width: 100 },
   skillItems: { flex: 1 },
   entry: { marginBottom: 5 },
   entryHeaderRow: { flexDirection: "row", justifyContent: "space-between" },
-  entryRole: { fontFamily: "Helvetica-Bold", fontSize: 9.5 },
-  entryYears: { fontSize: 8.5, color: "#444" },
-  entryMeta: { fontSize: 8.5, fontStyle: "italic", color: "#444", marginTop: 1, marginBottom: 2 },
+  entryRole: { fontFamily: "Helvetica-Bold", fontSize: 9.2 },
+  entryYears: { fontSize: 8, color: MUTED },
+  entryMeta: { fontSize: 8, color: BLUE, marginTop: 1, marginBottom: 2 },
   bullet: { flexDirection: "row", marginBottom: 1.5 },
-  bulletDot: { width: 9 },
-  bulletText: { flex: 1, lineHeight: 1.25 },
+  bulletDot: { width: 9, color: AMBER },
+  bulletText: { flex: 1 },
   certRow: { marginBottom: 1.5 },
 });
 
@@ -47,6 +56,7 @@ export function CvDocument({ data }: { data: CvData }) {
   return (
     <Document>
       <Page size="A4" style={styles.page}>
+        <View style={styles.band} fixed />
         <Text style={styles.name}>{data.name}</Text>
         <Text style={styles.title}>{data.title}</Text>
         <Text style={styles.contactRow}>

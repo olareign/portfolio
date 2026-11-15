@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, type ReactNode } from "react";
+import { createPortal } from "react-dom";
 
 interface ModalProps {
   open: boolean;
@@ -23,7 +24,8 @@ export function Modal({ open, onClose, titleId, title, children, widthClassName 
 
   if (!open) return null;
 
-  return (
+  // Portalled to <body> so no ancestor stacking context or transform can trap it under the HUD.
+  return createPortal(
     <div
       className="fixed inset-0 z-[70] flex items-center justify-center bg-void/90 px-4"
       onClick={(e) => {
@@ -34,7 +36,7 @@ export function Modal({ open, onClose, titleId, title, children, widthClassName 
         role="dialog"
         aria-modal="true"
         aria-labelledby={titleId}
-        className={`w-full ${widthClassName} border border-line bg-surface p-6`}
+        className={`max-h-[88vh] w-full overflow-y-auto ${widthClassName} border border-line bg-surface p-6`}
       >
         <div className="flex items-center justify-between">
           <h3 id={titleId} className="font-display text-lg text-ink-bright">
@@ -51,6 +53,7 @@ export function Modal({ open, onClose, titleId, title, children, widthClassName 
         </div>
         <div className="mt-4">{children}</div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }

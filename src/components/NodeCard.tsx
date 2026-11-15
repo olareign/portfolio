@@ -1,55 +1,20 @@
 import type { CSSProperties } from "react";
-import Image from "next/image";
 import type { Project } from "@/content";
+import { EMPLOYER_TONE, STATUS_TONE } from "@/lib/project-tones";
+import { ProjectMark } from "./ProjectMark";
 import { ScanBracket } from "./ScanBracket";
 
-const STATUS_TONE: Record<Project["status"], { text: string; dot: string }> = {
-  LIVE: { text: "text-accent-green", dot: "bg-accent-green" },
-  "IN PROGRESS": { text: "text-accent-amber", dot: "bg-accent-amber" },
-  SHIPPED: { text: "text-accent-blue", dot: "bg-accent-blue" },
-};
-
-// Each employer gets its own signal colour, matching the timeline tracks.
-const EMPLOYER_TONE: Record<Project["employer"], { bar: string; text: string }> = {
-  Pacifylabs: { bar: "bg-accent-amber", text: "text-accent-amber" },
-  "Tobams Group": { bar: "bg-accent-blue", text: "text-accent-blue" },
-};
-
 const REVEAL_STAGGER_MS = 55;
-
-function ProjectMark({ project, large }: { project: Project; large: boolean }) {
-  const box = large ? "h-12 w-12" : "h-9 w-9";
-  if (project.logo) {
-    return (
-      <div className={`flex ${box} shrink-0 items-center justify-center border border-line bg-void`}>
-        <Image
-          src={project.logo}
-          alt=""
-          width={32}
-          height={32}
-          className={`${large ? "h-8 w-8" : "h-6 w-6"} object-contain`}
-        />
-      </div>
-    );
-  }
-  return (
-    <div
-      aria-hidden
-      className={`flex ${box} shrink-0 items-center justify-center border border-line font-display text-xs text-ink-dim`}
-    >
-      {project.name.slice(0, 2).toUpperCase()}
-    </div>
-  );
-}
 
 interface NodeCardProps {
   project: Project;
   /** Position within the currently visible list — drives the counter and the reveal stagger. */
   index: number;
   total: number;
+  onOpen: (project: Project) => void;
 }
 
-export function NodeCard({ project, index, total }: NodeCardProps) {
+export function NodeCard({ project, index, total, onOpen }: NodeCardProps) {
   const featured = project.tag === "PRIMARY";
   const status = STATUS_TONE[project.status];
   const employer = EMPLOYER_TONE[project.employer];
@@ -59,9 +24,7 @@ export function NodeCard({ project, index, total }: NodeCardProps) {
   return (
     <article
       style={revealDelay}
-      className={`node-card group relative flex flex-col overflow-hidden border border-line bg-surface p-5 transition-[border-color,transform] duration-200 focus-within:border-accent-amber hover:-translate-y-1 hover:border-accent-amber motion-reduce:hover:translate-y-0 ${
-        featured ? "sm:col-span-2" : ""
-      }`}
+      className={`node-card group relative flex flex-col overflow-hidden border border-line bg-surface p-5 transition-[border-color,transform] duration-200 focus-within:border-accent-amber hover:-translate-y-1 hover:border-accent-amber motion-reduce:hover:translate-y-0`}
     >
       <span className={`absolute inset-x-0 top-0 h-0.5 ${employer.bar}`} aria-hidden />
       <span className="node-card-sweep" aria-hidden />
@@ -72,10 +35,18 @@ export function NodeCard({ project, index, total }: NodeCardProps) {
           <ProjectMark project={project} large={featured} />
           <div>
             <p className="font-data text-[10px] tracking-[0.15em] text-ink-dim">
-              <span className="tabular-nums">{counter}</span> · <span className={employer.text}>{project.employer.toUpperCase()}</span>
+              <span className="tabular-nums">{counter}</span> ·{" "}
+              <span className={employer.text}>{project.employer.toUpperCase()}</span>
             </p>
             <h3 className={`mt-1 font-display text-ink-bright ${featured ? "text-2xl sm:text-3xl" : "text-lg"}`}>
-              {project.name}
+              {/* Stretched button: the whole card opens the case file, with one focus stop. */}
+              <button
+                type="button"
+                onClick={() => onOpen(project)}
+                className="text-left after:absolute after:inset-0 after:content-[''] focus-visible:shadow-none"
+              >
+                {project.name}
+              </button>
             </h3>
             <p className="mt-0.5 font-data text-[11px] text-ink-dim">{project.type}</p>
           </div>
@@ -96,7 +67,7 @@ export function NodeCard({ project, index, total }: NodeCardProps) {
         </div>
       </div>
 
-      <p className={`mt-4 font-prose leading-relaxed text-ink ${featured ? "max-w-2xl text-base" : "text-sm"}`}>
+      <p className={`mt-4 font-prose leading-relaxed text-ink ${featured ? "max-w-3xl text-base" : "text-sm"}`}>
         {project.description}
       </p>
 
@@ -119,18 +90,9 @@ export function NodeCard({ project, index, total }: NodeCardProps) {
           />
           {project.status}
         </span>
-        {project.url ? (
-          <a
-            href={project.url}
-            target="_blank"
-            rel="noreferrer"
-            className="text-ink-dim transition-colors hover:text-accent-amber"
-          >
-            VISIT ↗
-          </a>
-        ) : (
-          project.platform && <span className="truncate text-ink-dim">{project.platform}</span>
-        )}
+        <span className="text-ink-dim transition-colors group-hover:text-accent-amber" aria-hidden>
+          OPEN FILE →
+        </span>
       </div>
     </article>
   );

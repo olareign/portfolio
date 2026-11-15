@@ -54,7 +54,7 @@ export const timeline: TimelineEntry[] = [
     endYear: "present",
     location: "Remote",
     summary:
-      "Owns SafePick end-to-end; builds and tests Rakuxon Care, SCIMS, EduMimi, and KudiPay while mentoring 20+ learners through backend and fullstack fundamentals.",
+      "Owns SafePick end-to-end and builds across the product and client portfolio — SCIMS, D-SCIMS, Rakuxon, Àjọ, AI Staff, and more — while mentoring 20+ learners through backend and fullstack fundamentals.",
   },
 ];
 
@@ -66,7 +66,7 @@ export interface Project {
   id: string;
   name: string;
   tag: ProjectTag;
-  employer: "Tobams Group" | "Pacifylabs";
+  employer: "Tobams Group" | "Pacifylabs" | "Independent";
   platform?: string;
   type: string;
   stack: string[];
@@ -76,6 +76,12 @@ export interface Project {
   url?: string;
   /** Path under /public to a project logo/mark. Falls back to an initials monogram when absent. */
   logo?: string;
+  /** Path under /public to a screenshot shown in the case file. */
+  preview?: string;
+  /** What the subject did on it, in one line. Shown in the case file. */
+  role: string;
+  /** Concrete, verifiable outcomes for the case file. Leave out rather than pad. */
+  highlights?: string[];
 }
 
 export const projects: Project[] = [
@@ -83,6 +89,11 @@ export const projects: Project[] = [
     id: "safepick",
     name: "SafePick",
     tag: "PRIMARY",
+    role: "Owner — architecture, backend and frontend",
+    highlights: [
+      "Designed and built end to end, closing a real safety gap in how schools release children.",
+      "Lets schools and parents verify who is authorized to collect a child before release.",
+    ],
     employer: "Pacifylabs",
     logo: "/logos/pacifylabs.png",
     type: "Child pickup authorization platform",
@@ -92,9 +103,33 @@ export const projects: Project[] = [
       "Owned end-to-end: a platform that verifies and authorizes who is allowed to pick up a child, reducing unauthorized-release risk for schools and guardians.",
   },
   {
+    id: "dosinex",
+    name: "Dosinex",
+    tag: "PRIMARY",
+    role: "Founder — product, backend and frontend",
+    employer: "Independent",
+    logo: "/logos/dosinex.png",
+    type: "Portfolio & CV platform",
+    stack: ["Next.js", "NestJS", "PostgreSQL", "Redis"],
+    status: "LIVE",
+    ai: true,
+    url: "https://dosinex.com",
+    description:
+      "Gives anyone with work to show a portfolio page, a CV people can download in the layout they choose, AI tailoring of that CV to a specific job, and an inbox for enquiries.",
+    highlights: [
+      "Own product, live at dosinex.com and open to every profession.",
+      "AI tailors a CV to a job description without inventing experience.",
+    ],
+  },
+  {
     id: "nexus",
     name: "Nexus",
     tag: "CONTRIBUTOR",
+    role: "Contributor — backend services and reporting",
+    highlights: [
+      "Statistics pipeline processing 10,000+ records with MongoDB aggregation pipelines.",
+      "BullMQ-driven email delivery producing automated daily admin reports.",
+    ],
     employer: "Tobams Group",
     platform: "nexus.tobamsgroup.com",
     logo: "/logos/tobams-group-icon.png",
@@ -109,6 +144,7 @@ export const projects: Project[] = [
     id: "rlk",
     name: "RLK",
     tag: "CONTRIBUTOR",
+    role: "Contributor — AI feature integration",
     employer: "Tobams Group",
     logo: "/logos/tobams-group-icon.png",
     type: "AI-integrated learning platform",
@@ -122,6 +158,7 @@ export const projects: Project[] = [
     id: "rlm",
     name: "RLM",
     tag: "CONTRIBUTOR",
+    role: "Contributor — AI feature integration",
     employer: "Tobams Group",
     logo: "/logos/tobams-group-icon.png",
     type: "AI-integrated learning platform",
@@ -135,6 +172,7 @@ export const projects: Project[] = [
     id: "rareeat",
     name: "Rareeat",
     tag: "CONTRIBUTOR",
+    role: "Contributor — product engineering",
     employer: "Tobams Group",
     logo: "/logos/tobams-group-icon.png",
     type: "Product platform",
@@ -147,8 +185,9 @@ export const projects: Project[] = [
     id: "rakuxon-care",
     name: "Rakuxon Care",
     tag: "CONTRIBUTOR",
+    role: "Contributor — site build",
     employer: "Pacifylabs",
-    logo: "/logos/pacifylabs.png",
+    logo: "/logos/rakuxon-care.png",
     type: "Marketing & enquiry site (UK care sector)",
     stack: ["Node.js", "PostgreSQL", "React"],
     status: "LIVE",
@@ -159,6 +198,11 @@ export const projects: Project[] = [
     id: "scims",
     name: "SCIMS",
     tag: "CONTRIBUTOR",
+    role: "Contributor — fullstack features",
+    highlights: [
+      "Multi-store system handling 10,000+ products.",
+      "Stock tracking, business analytics, and notification/payment integrations.",
+    ],
     employer: "Pacifylabs",
     logo: "/logos/pacifylabs.png",
     type: "Multi-store POS & inventory system",
@@ -171,6 +215,7 @@ export const projects: Project[] = [
     id: "edumimi",
     name: "EduMimi",
     tag: "CONTRIBUTOR",
+    role: "Contributor — backend and frontend features",
     employer: "Pacifylabs",
     logo: "/logos/pacifylabs.png",
     type: "Tutoring & school-management platform",
@@ -182,6 +227,7 @@ export const projects: Project[] = [
     id: "kudipay",
     name: "KudiPay",
     tag: "CONTRIBUTOR",
+    role: "Tester and technical reviewer",
     employer: "Pacifylabs",
     logo: "/logos/pacifylabs.png",
     type: "Fintech wallet & bill-payment platform",
@@ -191,25 +237,12 @@ export const projects: Project[] = [
       "Tester and technical reviewer for wallet-funding and automated airtime, data, and bill-payment flows, focused on transaction reliability.",
   },
   {
-    id: "kudibooks",
-    name: "KudiBooks",
-    tag: "CONTRIBUTOR",
-    employer: "Pacifylabs",
-    logo: "/logos/pacifylabs.png",
-    type: "Invoicing, bookkeeping & payments platform",
-    stack: ["NestJS", "PostgreSQL", "Next.js"],
-    status: "LIVE",
-    ai: true,
-    url: "https://usekudibooks.com",
-    description:
-      "Invoicing, bookkeeping, and payments for small businesses, Nigeria first, with an AI sales agent and social content module built in.",
-  },
-  {
     id: "d-scims",
     name: "D-SCIMS",
     tag: "CONTRIBUTOR",
+    role: "Contributor — fullstack",
     employer: "Pacifylabs",
-    logo: "/logos/pacifylabs.png",
+    logo: "/logos/d-scims.png",
     type: "Dealer inventory & sales PWA",
     stack: ["NestJS", "PostgreSQL", "BullMQ", "Next.js"],
     status: "LIVE",
@@ -221,8 +254,9 @@ export const projects: Project[] = [
     id: "rakuxon-path",
     name: "Rakuxon Path",
     tag: "CONTRIBUTOR",
+    role: "Contributor — university catalogue and public site",
     employer: "Pacifylabs",
-    logo: "/logos/pacifylabs.png",
+    logo: "/logos/rakuxon-path.png",
     type: "Study-abroad recruitment platform",
     stack: ["NestJS", "PostgreSQL", "Next.js"],
     status: "LIVE",
@@ -234,8 +268,9 @@ export const projects: Project[] = [
     id: "ajo",
     name: "Àjọ",
     tag: "CONTRIBUTOR",
+    role: "Contributor — fullstack",
     employer: "Pacifylabs",
-    logo: "/logos/pacifylabs.png",
+    logo: "/logos/ajo.png",
     type: "Savings & rotating-group (èsúsú) app",
     stack: ["NestJS", "PostgreSQL", "Next.js"],
     status: "IN PROGRESS",
@@ -246,6 +281,7 @@ export const projects: Project[] = [
     id: "ai-staff",
     name: "AI Staff",
     tag: "CONTRIBUTOR",
+    role: "Contributor — fullstack",
     employer: "Pacifylabs",
     logo: "/logos/pacifylabs.png",
     type: "AI workforce SaaS",
@@ -259,8 +295,9 @@ export const projects: Project[] = [
     id: "rakuxon-city",
     name: "Rakuxon City",
     tag: "CONTRIBUTOR",
+    role: "Contributor — site build",
     employer: "Pacifylabs",
-    logo: "/logos/pacifylabs.png",
+    logo: "/logos/rakuxon-city.png",
     type: "Real estate site (Nigeria)",
     stack: ["Next.js", "TypeScript"],
     status: "IN PROGRESS",
@@ -271,8 +308,9 @@ export const projects: Project[] = [
     id: "trustbridge",
     name: "TrustBridge",
     tag: "CONTRIBUTOR",
+    role: "Contributor — site build",
     employer: "Pacifylabs",
-    logo: "/logos/pacifylabs.png",
+    logo: "/logos/trustbridge.png",
     type: "Immigration services website (UK)",
     stack: ["Next.js", "TypeScript"],
     status: "IN PROGRESS",
@@ -282,8 +320,9 @@ export const projects: Project[] = [
     id: "ablin",
     name: "Ablin",
     tag: "CONTRIBUTOR",
+    role: "Contributor — site build",
     employer: "Pacifylabs",
-    logo: "/logos/pacifylabs.png",
+    logo: "/logos/ablin.png",
     type: "GRC advisory website",
     stack: ["Next.js", "TypeScript"],
     status: "IN PROGRESS",
@@ -310,9 +349,13 @@ export interface Stat {
   label: string;
 }
 
+const liveProjectCount = projects.filter((p) => p.status !== "IN PROGRESS").length;
+
+// Project counts are derived from the list above so they can't drift from it.
 export const stats: Stat[] = [
   { value: "4+", label: "years experience" },
-  { value: "10+", label: "products shipped" },
+  { value: String(projects.length), label: "products worked on" },
+  { value: String(liveProjectCount), label: "live or shipped" },
   { value: "10k+", label: "records processed (Nexus)" },
   { value: "20+", label: "learners mentored" },
 ];
@@ -332,7 +375,7 @@ export const bio = {
   paragraphs: [
     "Olareign studied Chemistry at university — then taught himself software engineering from scratch and has spent the 4+ years since building and shipping backend-leaning fullstack products in production.",
     "From 2023 to 2026 he led a development team of 10+ at Tobams Group (UK, remote), shipping across the Nexus, RLK, RLM, and Rareeat platforms — three repos, two domains, one shared API.",
-    "He's been a software engineer and tutor at Pacifylabs since 2022, where he owns SafePick end-to-end and builds Rakuxon Care, SCIMS, EduMimi, and KudiPay while mentoring 20+ learners through JavaScript and web development.",
+    "He's been a software engineer and tutor at Pacifylabs since 2022, where he owns SafePick end-to-end and builds across the company's products and client work: SCIMS and D-SCIMS, EduMimi, KudiPay, Àjọ, AI Staff, the Rakuxon family (Care, Path, and City), and client sites for TrustBridge and Ablin — all while mentoring 20+ learners through JavaScript and web development.",
     "The self-taught path shows up in how he works: strong on fundamentals, comfortable reading unfamiliar codebases, and expanding deliberately into Go, Python, and AI engineering rather than staying inside one comfortable stack.",
     "In practice that has meant building a Nexus statistics pipeline processing 10,000+ records through MongoDB aggregation, with BullMQ-driven email delivery producing automated daily admin reports; wiring payment flows through Paystack, Stripe, and PayPal; and stress-testing platform systems ahead of a large intern-onboarding event to make sure they held up under load.",
     "He also holds certifications in Project Management, Strategic Planning, and Leadership — practical grounding for the parts of the job that aren't just code: coordinating a 10-person team, reviewing pull requests, and mentoring the developers he teaches JavaScript and web development to.",

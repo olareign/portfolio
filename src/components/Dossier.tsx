@@ -5,12 +5,12 @@ import { ScanBracket } from "./ScanBracket";
 
 export function Dossier({ num }: { num: number }) {
   return (
-    <section id="dossier" className="border-b border-line py-16">
+    <section id="dossier" className="reveal border-b border-line py-16">
       <p className="font-data text-xs tracking-[0.2em] text-accent-amber">{String(num).padStart(2, "0")}</p>
       <h2 className="mt-1 font-display text-2xl text-ink-bright sm:text-3xl">SUBJECT FILE</h2>
 
       <div className="mt-8 grid grid-cols-1 gap-10 lg:grid-cols-[1fr_260px]">
-        <div className="max-w-[70ch] space-y-4">
+        <div className="reading-panel max-w-[75ch] space-y-4">
           {bio.paragraphs.map((p) => (
             <p key={p} className="font-prose text-sm leading-relaxed text-ink sm:text-base">
               {p}

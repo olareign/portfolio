@@ -2,7 +2,6 @@ import { profile, stack } from "@/content";
 import { ScanBracket } from "./ScanBracket";
 import { SubjectFeed } from "./SubjectFeed";
 import { FocusCycler } from "./FocusCycler";
-import { SubjectLockSequence } from "./SubjectLockSequence";
 import { CvDownload } from "./CvDownload";
 
 // "(learning)" entries stay in the capabilities table; the hero only cycles what's used in production.
@@ -44,7 +43,6 @@ export function Hero() {
 
       <SubjectFeed />
 
-      <SubjectLockSequence />
     </section>
   );
 }

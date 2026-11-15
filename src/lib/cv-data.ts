@@ -1,6 +1,5 @@
-// Structured, faithful transcription of the real CV (public/cv.pdf).
-// This is the single source of truth handed to the AI tailoring prompt and to the
-// generated-PDF template — never let either drift from what's written here.
+// The CV, as structured data. /cv.pdf is rendered from this at build time
+// (src/app/cv.pdf/route.tsx), so editing this file is how the downloadable CV changes.
 
 export interface CvExperience {
   role: string;
@@ -85,16 +84,25 @@ export const cvData: CvData = {
       meta: "Fullstack contributor, technical tutor & office administrator",
       years: "2022 — Present",
       bullets: [
-        "Contribute to fullstack development across the company's product suite, spanning backend APIs (NestJS, PostgreSQL, Redis) and frontends (React, Next.js).",
-        "SCIMS (business management): contributed to a multi-store point-of-sale and inventory system handling 10,000+ products, with stock tracking, business analytics, and notification/payment integrations.",
-        "EduMimi (edtech): contributed backend and frontend features for a tutoring/courses and school-management platform.",
-        "Rakuxon Care (UK care sector): built a dual-audience marketing and enquiry site covering home-care services and B2B care-business enablement.",
-        "KudiPay (fintech): served as tester and technical reviewer for wallet-funding and automated airtime, data, and bill-payment flows, focusing on transaction reliability.",
+        "Contribute to fullstack development across the company's product suite and client work, spanning backend APIs (NestJS, PostgreSQL, Redis, BullMQ) and frontends (React, Next.js).",
+        "SCIMS and D-SCIMS (business management): multi-store point-of-sale and inventory systems handling 10,000+ products, plus a dealer PWA covering sales, credit ledger, and device provenance.",
+        "Rakuxon Path (edtech): built the university catalogue and public site for a multi-tenant study-abroad recruitment platform.",
+        "Ajo (fintech) and AI Staff (AI SaaS): fullstack contributor on a savings and rotating-group app with a ledger and KYC, and on a platform where businesses hire AI staff for social media and sales.",
+        "Client and brand sites: Rakuxon Care (UK care sector), Rakuxon City (real estate), TrustBridge (UK immigration services), and Ablin (GRC advisory).",
+        "EduMimi (edtech) and KudiPay (fintech): backend and frontend features for a tutoring platform; tester and technical reviewer for wallet-funding and bill-payment flows.",
         "Taught JavaScript and web development to 20+ learners, and supported day-to-day office and administrative coordination.",
       ],
     },
   ],
   projects: [
+    {
+      name: "Dosinex — Portfolio & CV Platform",
+      meta: "Own product · dosinex.com",
+      bullets: [
+        "Founded and built a live product that gives anyone a portfolio page, a downloadable CV in a chosen layout, AI tailoring of that CV to a job, and an enquiry inbox.",
+        "Next.js frontend with a NestJS backend on PostgreSQL and Redis; AI tailoring re-emphasizes real experience and never invents it.",
+      ],
+    },
     {
       name: "SafePick — Child Pickup Authorization Platform",
       meta: "Personal build",

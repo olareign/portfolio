@@ -1,56 +1,58 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, m, useReducedMotion } from "framer-motion";
-import { profile } from "@/content";
+import { profile, projects } from "@/content";
 
 const BOOT_LINES = [
+  "> boot --machine",
   "> scan --subject olareign",
-  "<DIR> operational_history/",
-  "<DIR> analyzed_entities/",
+  `<DIR> operational_history/    2022—2026`,
+  `<DIR> analyzed_entities/      ${projects.length} records`,
   "<DIR> detected_capabilities/",
-  "MATCH FOUND: 0x88",
+  "FACIAL RECOGNITION ............ RUNNING",
 ];
 
 const BOOT_DURATION_MS = 1500;
-const LOCK_DURATION_MS = 800;
+const LOCK_DURATION_MS = 1500;
 const SESSION_KEY = "soi-booted";
 
 type Phase = "boot" | "lock" | "done";
 
 const CORNERS = [
-  "top-0 left-0 border-t border-l",
-  "top-0 right-0 border-t border-r",
-  "bottom-0 left-0 border-b border-l",
-  "bottom-0 right-0 border-b border-r",
+  "top-0 left-0 border-t-2 border-l-2",
+  "top-0 right-0 border-t-2 border-r-2",
+  "bottom-0 left-0 border-b-2 border-l-2",
+  "bottom-0 right-0 border-b-2 border-r-2",
 ] as const;
 
-function LockBracket({ finalColor }: { finalColor: string }) {
+/** Brackets start wide, then snap onto the face. */
+function LockBracket() {
   return (
-    <div className="pointer-events-none absolute -inset-3" aria-hidden>
+    <div className="pointer-events-none absolute inset-0" aria-hidden>
       {CORNERS.map((pos) => (
         <m.span
           key={pos}
-          className={`absolute h-4 w-4 ${pos}`}
-          initial={{ opacity: 0, scale: 0.7, borderColor: "#E4372B" }}
-          animate={{
-            opacity: 1,
-            scale: 1,
-            borderColor: ["#E4372B", "#E4372B", finalColor],
-          }}
-          transition={{ duration: LOCK_DURATION_MS / 1000, times: [0, 0.6, 1], ease: "easeOut" }}
+          className={`absolute h-5 w-5 border-accent-amber ${pos}`}
+          initial={{ opacity: 0, scale: 1.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.45, ease: "easeOut" }}
         />
       ))}
     </div>
   );
 }
 
+/**
+ * First-visit intro: a terminal boot log types out, then the Machine acquires the subject's face,
+ * classifies them and hands off to the page. Plays once per browser session; skipped under reduced motion.
+ */
 export function SubjectLockSequence() {
   const reduceMotion = useReducedMotion();
   const [shouldPlay, setShouldPlay] = useState(false);
   const [phase, setPhase] = useState<Phase>("boot");
   const [typedChars, setTypedChars] = useState(0);
-  const [inkBright, setInkBright] = useState("#FFFFFF");
 
   const fullText = useMemo(() => BOOT_LINES.join("\n"), []);
 
@@ -75,11 +77,7 @@ export function SubjectLockSequence() {
         const next = c + 1;
         if (next >= fullText.length) {
           window.clearInterval(id);
-          window.setTimeout(() => {
-            const resolved = getComputedStyle(document.documentElement).getPropertyValue("--ink-bright").trim();
-            if (resolved) setInkBright(resolved);
-            setPhase("lock");
-          }, 150);
+          window.setTimeout(() => setPhase("lock"), 150);
         }
         return next;
       });
@@ -100,6 +98,18 @@ export function SubjectLockSequence() {
     return () => window.clearTimeout(id);
   }, [phase]);
 
+  // Any key or tap skips the intro.
+  useEffect(() => {
+    if (!shouldPlay || phase === "done") return;
+    const skip = () => setPhase("done");
+    window.addEventListener("keydown", skip);
+    window.addEventListener("pointerdown", skip);
+    return () => {
+      window.removeEventListener("keydown", skip);
+      window.removeEventListener("pointerdown", skip);
+    };
+  }, [shouldPlay, phase]);
+
   if (!shouldPlay || phase === "done") return null;
 
   const typedText = fullText.slice(0, typedChars);
@@ -108,33 +118,55 @@ export function SubjectLockSequence() {
     <AnimatePresence>
       <m.div
         aria-hidden
-        className="fixed inset-0 z-[60] flex items-center justify-center bg-void px-6"
+        className="fixed inset-0 z-[90] flex items-center justify-center bg-void px-6"
         exit={{ opacity: 0 }}
         transition={{ duration: 0.35 }}
       >
         {phase === "boot" && (
           <pre className="w-full max-w-lg whitespace-pre-wrap font-data text-xs text-ink-dim sm:text-sm">
             {typedText}
-            <span className="animate-pulse motion-reduce:animate-none">_</span>
+            <span className="animate-pulse text-accent-amber motion-reduce:animate-none">_</span>
           </pre>
         )}
 
         {phase === "lock" && (
-          <div className="relative">
-            <LockBracket finalColor={inkBright} />
-            <p className="font-display text-[clamp(1.75rem,6vw,3.5rem)] text-ink-bright">
-              {profile.handle.toUpperCase()}
-            </p>
-            <m.p
-              className="mt-2 font-data text-xs tracking-[0.2em] text-accent-red"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: [0, 1, 1, 0.6] }}
-              transition={{ duration: LOCK_DURATION_MS / 1000, times: [0, 0.3, 0.7, 1] }}
+          <div className="flex flex-col items-center gap-6 sm:flex-row sm:gap-10">
+            <m.div
+              className="relative h-56 w-44 overflow-hidden border border-line sm:h-72 sm:w-56"
+              initial={{ opacity: 0, filter: "grayscale(1) contrast(1.4)" }}
+              animate={{ opacity: 1, filter: ["grayscale(1) contrast(1.4)", "grayscale(1) contrast(1.4)", "grayscale(0) contrast(1)"] }}
+              transition={{ duration: 1, times: [0, 0.5, 1] }}
             >
-              ● SUBJECT IDENTIFIED
-            </m.p>
+              <Image src="/headshot.png" alt="" fill sizes="224px" className="object-cover" priority />
+              <div className="feed-scan" />
+              <div className="absolute left-[24%] top-[20%] h-[46%] w-[52%]">
+                <LockBracket />
+              </div>
+            </m.div>
+
+            <div className="text-center sm:text-left">
+              <p className="font-display text-[clamp(1.75rem,6vw,3.5rem)] leading-none text-ink-bright">
+                {profile.handle.toUpperCase()}
+              </p>
+              <m.div
+                className="mt-4 space-y-1 font-data text-xs tracking-[0.18em]"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.55, duration: 0.3 }}
+              >
+                <p className="text-accent-amber">● SUBJECT IDENTIFIED</p>
+                <p className="text-ink-dim">
+                  CLASSIFICATION <span className="text-accent-blue">RELEVANT</span>
+                </p>
+                <p className="text-ink-dim">
+                  STATUS <span className="text-accent-green">OPEN TO WORK</span>
+                </p>
+              </m.div>
+            </div>
           </div>
         )}
+
+        <p className="absolute bottom-6 font-data text-[10px] tracking-[0.2em] text-ink-dim">PRESS ANY KEY TO SKIP</p>
       </m.div>
     </AnimatePresence>
   );
